@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Be a champion balancer!</title>
+    <style>
+        @font-face {
+    font-family: 'Beaufort'; /*a name to be used later*/
+    font-weight: bold;
+    src: url('./../fonts/BeaufortforLOL-Bold.ttf'); /*URL to font*/
+}
+@font-face {
+  font-family: 'Beaufort'; /*a name to be used later*/
+  font-weight: bold;
+  font-style: italic;
+  src: url('./../fonts/BeaufortforLOL-BoldItalic.ttf'); /*URL to font*/
+}
+@font-face {
+  font-family: 'Spiegel'; /*a name to be used later*/
+  font-weight: bold;
+  src: url('./../fonts/Spiegel_TT_SemiBold.ttf'); /*URL to font*/
+}
+@font-face {
+  font-family: 'Spiegel'; /*a name to be used later*/
+  font-weight: bold;
+  font-style: italic;
+  src: url('./../fonts/Spiegel_TT_SemiBold_Italic.ttf'); /*URL to font*/
+}
+
+        .app {
+            height: 100%;
+            width: 100%;
+             background: rgb(9,20,40);
+background: linear-gradient(180deg, rgba(9,20,40,1) 0%, rgba(10,20,40,1) 100%); 
+        }
+        html, body {
+            height: 100%;
+            width: 100%;
+            margin: 0;
+        }
+        h1,h2,h3,h4,h5  {
+            font-family: 'Beaufort';
+            margin: 0;
+            color: #C89B3C;
+        }
+        h1 {
+            font-size: 40px;
+        }
+        h2 {
+            font-size: 28px;
+        }
+        h3 {
+            font-size: 23px;
+        }
+        h4 {
+            font-size: 18px;
+        }
+        h5 {
+            font-size: 14pxx;
+        }
+        h6,p {
+            font-family: 'Spiegel';
+            color: #A09B8C;
+        }
+        h6 {
+            font-size: 14px;
+        }
+        p {
+            font-size: 11px;
+        }
+        .mainbutton {
+            margin-top: 1rem;
+            background-color: #0A323C;
+            padding: 0.5rem;
+            padding-left: 2rem;
+            padding-right: 2rem;
+            border: 1px solid #0AC8B9;
+        }
+        #champions {
+            margin-top: 5%;
+            height: 95%;
+            width: 100%;
+        }
+        .champion {
+            flex-direction: row;
+            flex-wrap: nowrap;
+            align-content: center;
+            justify-content: space-around;
+            align-items: center;
+            border-bottom: 1px solid #0AC8B9;
+            display: flex;
+            padding-bottom: 0.5rem;
+            padding-top: 0.5rem;
+        }
+        a {
+            color: #CDFAFA;
+        }
+        .abilities {
+            width: 50px;
+        }
+        .champion_name {
+            width: 0px;
+        }
+        .champion_adjustment {
+            width: 150px;
+        }
+    </style>
+</head>
+<body>
+    <div class="app">
+
+        <center>
+            <h1>League of Legends balance team simulator</h1>
+            <button class="mainbutton" onclick="flow()"><h1>Make a patch note</h1></button>
+            <div id="champions">
+            
+            </div>
+            <div id="lol">
+
+            </div>
+        </center>
+       
+    </div>
+
+    <script>
+        const lolChampions = [
+  'Aatrox', 'Ahri', 'Akali', 'Alistar', 'Amumu', 'Anivia', 'Annie', 'Aphelios', 'Ashe', 'Aurelion Sol',
+  'Azir', 'Bard', 'Blitzcrank', 'Brand', 'Braum', 'Caitlyn', 'Camille', 'Cassiopeia', 'Cho\'Gath', 'Corki',
+  'Darius', 'Diana', 'Dr. Mundo', 'Draven', 'Ekko', 'Elise', 'Evelynn', 'Ezreal', 'Fiddlesticks', 'Fiora',
+  'Fizz', 'Galio', 'Gangplank', 'Garen', 'Gnar', 'Gragas', 'Graves', 'Hecarim', 'Heimerdinger', 'Illaoi',
+  'Irelia', 'Ivern', 'Janna', 'Jarvan IV', 'Jax', 'Jayce', 'Jhin', 'Jinx', 'Kai\'Sa', 'Kalista',
+  'Karma', 'Karthus', 'Kassadin', 'Katarina', 'Kayle', 'Kayn', 'Kennen', 'Kha\'Zix', 'Kindred', 'Kled',
+  'Kog\'Maw', 'LeBlanc', 'Lee Sin', 'Leona', 'Lillia', 'Lissandra', 'Lucian', 'Lulu', 'Lux', 'Malphite',
+  'Malzahar', 'Maokai', 'Master Yi', 'Miss Fortune', 'Mordekaiser', 'Morgana', 'Nami', 'Nasus', 'Nautilus',
+  'Neeko', 'Nidalee', 'Nocturne', 'Nunu & Willump', 'Olaf', 'Orianna', 'Ornn', 'Pantheon', 'Poppy',
+  'Pyke', 'Qiyana', 'Quinn', 'Rakan', 'Rammus', 'Rek\'Sai', 'Renekton', 'Rengar', 'Riven', 'Rumble',
+  'Ryze', 'Samira', 'Sejuani', 'Senna', 'Seraphine', 'Sett', 'Shaco', 'Shen', 'Shyvana', 'Singed',
+  'Sion', 'Sivir', 'Skarner', 'Sona', 'Soraka', 'Swain', 'Sylas', 'Syndra', 'Tahm Kench', 'Taliyah',
+  'Talon', 'Taric', 'Teemo', 'Thresh', 'Tristana', 'Trundle', 'Tryndamere', 'Twisted Fate', 'Twitch', 'Udyr',
+  'Urgot', 'Varus', 'Vayne', 'Veigar', 'Vel\'Koz', 'Vi', 'Viktor', 'Vladimir', 'Volibear', 'Warwick',
+  'Wukong', 'Xayah', 'Xerath', 'Xin Zhao', 'Yasuo', 'Yone', 'Yorick', 'Yuumi', 'Zac', 'Zed',
+  'Ziggs', 'Zilean', 'Zoe', 'Zyra'
+];
+    const adjusments = ["Buff","Nerf","Rework - buff","Rework - nerf"];
+    const skills = ["P","Q","W","E","R"];
+        async function addChamp() {
+            var champions = document.getElementById("champions");
+            champions.innerHTML += `<div class="champion">
+                <h3 class="champion_name"></h3>
+                <h6 class="champion_adjustment"></h6>
+                <div class="abilities">
+                    
+                </div>
+            </div>`;
+        }
+        async function flow() {
+            document.getElementById("champions").innerHTML = "";
+            for (let i = 0; Math.floor(Math.random() * 5)+3 > i; i++) {
+                await addChamp();
+            }
+            var champs = document.getElementsByClassName("champion");
+            for (let i = 0; champs.length > i; i++) {
+                var random_champion = lolChampions[Math.floor(Math.random() * lolChampions.length)];
+                var random_adjustment = adjusments[Math.floor(Math.random() * adjusments.length)];
+                var random_skill = skills[Math.floor(Math.random() * skills.length)];
+                var random_skill2 = skills[Math.floor(Math.random() * skills.length)];
+                console.log(random_champion);
+                champs[i].innerHTML = `<h3 class="champion_name">${random_champion}</h3>
+                <h4 class="champion_adjustment">${random_adjustment}</h4>
+                <div class="abilities">
+                    <h3 class="ability">
+                        ${random_skill}
+                    </h3>
+                    <h3 class="ability">
+                        ${random_skill2}
+                    </h3>
+                    
+                </div>`;
+            }
+            document.getElementById("lol").innerHTML = `<h1 style="padding-top: 1rem;">Congratulations, now you're a professional champion balancer!</h1><br><h6>Made with the help of boredom by <a href="https://xyl.lol/zeunig">Zeunig</a></h6>`;
+            
+        }   
+    </script>
+</body>
+</html>
