@@ -26,6 +26,9 @@ body {
 #prompt.fade {
   opacity: 0;
 }
+#enter {
+    cursor: pointer;
+}
 
 #bio {
     height: 100vh;

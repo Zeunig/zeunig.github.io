@@ -120,7 +120,10 @@
         let ff = 0;
         async function showShit() {
             document.getElementById('audio').play();
-            document.getElementById('prompt').remove();
+            document.getElementById('enter').style.cursor = "default";
+            document.getElementById('prompt').style.pointerEvents = "none";
+            document.getElementById('prompt').classList.toggle("fade");
+            
             await changeText();
         }
         async function changeText() {
