@@ -21,7 +21,7 @@ body {
     align-items: center;
     cursor:pointer;
     position:absolute;
-    transition: opacity 0.08s; 
+    transition: opacity 0.1s; 
 }
 #prompt.fade {
   opacity: 0;
