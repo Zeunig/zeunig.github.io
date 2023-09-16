@@ -21,7 +21,12 @@ body {
     align-items: center;
     cursor:pointer;
     position:absolute;
+    transition: opacity 0.08s; 
 }
+#prompt.fade {
+  opacity: 0;
+}
+
 #bio {
     height: 100vh;
     width: 100%;
